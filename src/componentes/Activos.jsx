@@ -14,27 +14,47 @@ export default function Activos() {
       .then((res) => res.json())
       .then((data) => setDatos(data));
   }, []);
+  // nuevo
+  const nuevo = () => {
+    setForm({ nombreActivo: "", ubicacion: "", estado: "Activo" });
+    setMostrarForm(true);
+  };
+  // editar
+  const editar = (activo) => {
+    setForm(activo);
+    setMostrarForm(true);
+  };
 
-  const crear = async () => {
+  const Guardar = async () => {
     if (!form.nombreActivo || !form.ubicacion)
       return alert("Completa los campos");
-
-    const res = await fetch("http://localhost:5000/activos", {
-      method: "POST",
+    const url = form.id ? `http://localhost:5000/activos/${form.id}` : "http://localhost:5000/activos";
+    const method = form.id ? "PUT" : "POST";
+    const res = await fetch(url, {
+      method: method,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
     });
-
-    if (!res.ok) return alert("Error al crear");
-
+    if (!res.ok) return alert("Error al guardar");
     const nueva = await fetch("http://localhost:5000/activos").then((r) =>
       r.json()
     );
-
-    // ← ESTO ESTABA MAL UBICADO, ahora va aquí
     setDatos(nueva);
     setForm({ nombreActivo: "", ubicacion: "", estado: "Activo" });
     setMostrarForm(false);
+  };
+
+  // eliminar
+  const eliminar = async (id) => {
+    if (!window.confirm("Estas seguro de eliminar este activo?")) return;
+    const res = await fetch(`http://localhost:5000/activos/${id}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) return alert("Error al eliminar");
+    const nueva = await fetch("http://localhost:5000/activos").then((r) =>
+      r.json()
+    );
+    setDatos(nueva);
   };
 
   return (
@@ -42,7 +62,7 @@ export default function Activos() {
       <h2 className="mb-3">Activos</h2>
       <button
         className="btn btn-primary mb-3"
-        onClick={() => setMostrarForm(true)}
+        onClick={nuevo} 
       >
         Nuevo Activo
       </button>
@@ -50,7 +70,7 @@ export default function Activos() {
       {mostrarForm && (
         <div className="card mb-3">
           <div className="card-body">
-            <h5>Crear Activo</h5>
+            <h5> {form.id ? "Editar activo": "Crear Activo"}</h5>
 
             <input
               className="form-control mb-2"
@@ -79,7 +99,7 @@ export default function Activos() {
               <option>Inactivo</option>
             </select>
 
-            <button className="btn btn-success btn-sm me-2" onClick={crear}>
+            <button className="btn btn-success btn-sm me-2" onClick={Guardar}>
               Guardar
             </button>
 
@@ -100,6 +120,7 @@ export default function Activos() {
             <th scope="col">Nombre</th>
             <th scope="col">Ubicacion</th>
             <th scope="col">Estado</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
 
@@ -110,6 +131,10 @@ export default function Activos() {
               <td>{activo.nombreActivo}</td>
               <td>{activo.ubicacion}</td>
               <td>{activo.estado}</td>
+              <td>
+                <button className="btn btn-sm btn-outline-warning me-2" onClick={()=>editar(activo)}>Editar</button>
+                <button className="btn btn-sm btn-outline-danger" onClick={()=>eliminar(activo.id)}>Eliminar</button>
+              </td>
             </tr>
           ))}
         </tbody>
