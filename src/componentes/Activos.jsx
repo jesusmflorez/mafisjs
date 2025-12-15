@@ -1,77 +1,74 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Activos() {
   const [datos, setDatos] = useState([]);
   const [mostrarForm, setMostrarForm] = useState(false);
   const [form, setForm] = useState({
+    id: null,
     nombreActivo: "",
     ubicacion: "",
     estado: "Activo",
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/activos")
+    fetch("http://localhost:5000/api/activos")
       .then((res) => res.json())
       .then((data) => setDatos(data));
   }, []);
-  // nuevo
+
   const nuevo = () => {
-    setForm({ nombreActivo: "", ubicacion: "", estado: "Activo" });
-    setMostrarForm(true);
-  };
-  // editar
-  const editar = (activo) => {
-    setForm(activo);
+    setForm({ id: null, nombreActivo: "", ubicacion: "", estado: "Activo" });
     setMostrarForm(true);
   };
 
-  const Guardar = async () => {
+  const editar = (item) => {
+    setForm({ ...item });
+    setMostrarForm(true);
+  };
+
+  const guardar = async () => {
     if (!form.nombreActivo || !form.ubicacion)
       return alert("Completa los campos");
-    const url = form.id ? `http://localhost:5000/activos/${form.id}` : "http://localhost:5000/activos";
+    const url = form.id
+      ? `http://localhost:5000/api/activos/${form.id}`
+      : "http://localhost:5000/api/activos";
     const method = form.id ? "PUT" : "POST";
     const res = await fetch(url, {
-      method: method,
+      method,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
     });
     if (!res.ok) return alert("Error al guardar");
-    const nueva = await fetch("http://localhost:5000/activos").then((r) =>
+    const nueva = await fetch("http://localhost:5000/api/activos").then((r) =>
       r.json()
     );
     setDatos(nueva);
-    setForm({ nombreActivo: "", ubicacion: "", estado: "Activo" });
     setMostrarForm(false);
   };
 
-  // eliminar
-  const eliminar = async (id) => {
-    if (!window.confirm("Estas seguro de eliminar este activo?")) return;
-    const res = await fetch(`http://localhost:5000/activos/${id}`, {
+  const borrar = async (id) => {
+    if (!window.confirm("¿Confirma eliminar este activo?")) return;
+    const res = await fetch(`http://localhost:5000/api/activos/${id}`, {
       method: "DELETE",
     });
-    if (!res.ok) return alert("Error al eliminar");
-    const nueva = await fetch("http://localhost:5000/activos").then((r) =>
+    if (!res.ok) return alert("Error al borrar");
+    const nueva = await fetch("http://localhost:5000/api/activos").then((r) =>
       r.json()
     );
     setDatos(nueva);
   };
 
   return (
-    <>
-      <h2 className="mb-3">Activos</h2>
-      <button
-        className="btn btn-primary mb-3"
-        onClick={nuevo} 
-      >
-        Nuevo Activo
+    <div className="container mt-4">
+      <h2>Gestión de Activos</h2>
+      <button className="btn btn-primary mb-3" onClick={nuevo}>
+        Nuevo activo
       </button>
 
       {mostrarForm && (
         <div className="card mb-3">
           <div className="card-body">
-            <h5> {form.id ? "Editar activo": "Crear Activo"}</h5>
-
+            <h5>{form.id ? "Editar activo" : "Crear activo"}</h5>
             <input
               className="form-control mb-2"
               placeholder="Nombre"
@@ -80,16 +77,12 @@ export default function Activos() {
                 setForm({ ...form, nombreActivo: e.target.value })
               }
             />
-
             <input
               className="form-control mb-2"
-              placeholder="Ubicacion"
+              placeholder="Ubicación"
               value={form.ubicacion}
-              onChange={(e) =>
-                setForm({ ...form, ubicacion: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, ubicacion: e.target.value })}
             />
-
             <select
               className="form-select mb-2"
               value={form.estado}
@@ -98,11 +91,9 @@ export default function Activos() {
               <option>Activo</option>
               <option>Inactivo</option>
             </select>
-
-            <button className="btn btn-success btn-sm me-2" onClick={Guardar}>
+            <button className="btn btn-success btn-sm me-2" onClick={guardar}>
               Guardar
             </button>
-
             <button
               className="btn btn-secondary btn-sm"
               onClick={() => setMostrarForm(false)}
@@ -116,29 +107,38 @@ export default function Activos() {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Ubicacion</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Acciones</th>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Ubicación</th>
+            <th>Estado</th>
+            <th className="text-center">Acciones</th>
           </tr>
         </thead>
-
         <tbody>
-          {datos.map((activo) => (
-            <tr key={activo.id}>
-              <td>{activo.id}</td>
-              <td>{activo.nombreActivo}</td>
-              <td>{activo.ubicacion}</td>
-              <td>{activo.estado}</td>
-              <td>
-                <button className="btn btn-sm btn-outline-warning me-2" onClick={()=>editar(activo)}>Editar</button>
-                <button className="btn btn-sm btn-outline-danger" onClick={()=>eliminar(activo.id)}>Eliminar</button>
+          {datos.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.nombreActivo}</td>
+              <td>{item.ubicacion}</td>
+              <td>{item.estado}</td>
+              <td className="text-center">
+                <button
+                  className="btn btn-sm btn-outline-warning me-2"
+                  onClick={() => editar(item)}
+                >
+                  Editar
+                </button>
+                <button
+                  className="btn btn-sm btn-outline-danger"
+                  onClick={() => borrar(item.id)}
+                >
+                  Borrar
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }
