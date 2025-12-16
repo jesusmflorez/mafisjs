@@ -1,0 +1,34 @@
+/* ActivosCharts.css */
+
+/* Contenedor principal de gráficos */
+.ChartsContainer {
+  display: flex;               /* Organiza los gráficos en fila */
+  flex-wrap: wrap;             /* Permite que los gráficos bajen en pantallas pequeñas */
+  justify-content: space-around; /* Espacio uniforme entre gráficos */
+  gap: 30px;                   /* Separación entre gráficos */
+  margin: 20px 0;              /* Espacio superior e inferior */
+}
+
+/* Cada gráfico dentro del contenedor */
+.ChartsContainer > div {
+  flex: 1 1 400px;             /* Cada gráfico ocupa al menos 400px y puede crecer */
+  max-width: 500px;            /* No se hace demasiado grande */
+  text-align: center;           /* Centra título y gráfico */
+  background: #fff;             /* Fondo blanco */
+  padding: 15px;                /* Espacio interno */
+  border-radius: 10px;          /* Bordes redondeados */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Títulos de los gráficos */
+.ChartsContainer h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* Canvas de los gráficos para que sean responsivos */
+.ChartsContainer canvas {
+  width: 100% !important;
+  height: auto !important;
+}

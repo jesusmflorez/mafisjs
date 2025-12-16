@@ -1,4 +1,7 @@
 import { useState } from "react";
+import "./Login.css";
+import logo from "../assets/logo.svg";
+
 
 export default function Login({ onLogin }) {
   const [vista, setVista] = useState("login");
@@ -62,7 +65,14 @@ export default function Login({ onLogin }) {
   // Vista actual
   if (vista === "login")
     return (
-      <div className="container mt-5" style={{ maxWidth: 400 }}>
+      <div className="login-container">
+        <div className="login-header text-center mb-4">
+          <img src={logo} alt="MAFIS Logo" className="login-logo mb-3" />
+          <h1 className="login-title">MAFIS</h1>
+          <p className="login-subtitle">
+            Sistema de gestión y mantenimiento de activos fijos
+          </p>
+        </div>
         <h2 className="mb-4 text-center">Iniciar sesión</h2>
         <form onSubmit={login} className="card p-4">
           <input
@@ -106,7 +116,14 @@ export default function Login({ onLogin }) {
 
   if (vista === "register")
     return (
-      <div className="container mt-5" style={{ maxWidth: 400 }}>
+      <div className="login-container">
+        <div className="login-header text-center mb-4">
+          <img src={logo} alt="MAFIS Logo" className="login-logo mb-3" />
+          <h1 className="login-title">MAFIS</h1>
+          <p className="login-subtitle">
+            Sistema de gestión y mantenimiento de activos fijos
+          </p>
+        </div>
         <h2 className="mb-4 text-center">Crear cuenta</h2>
         <form onSubmit={register} className="card p-4">
           <input
@@ -158,7 +175,15 @@ export default function Login({ onLogin }) {
     );
 
   return (
-    <div className="container mt-5" style={{ maxWidth: 400 }}>
+    <div className="login-container">
+      <div className="login-header text-center mb-4">
+        <img src={logo} alt="MAFIS Logo" className="login-logo mb-3" />
+        <h1 className="login-title">MAFIS</h1>
+        <p className="login-subtitle">
+          Sistema de gestión y mantenimiento de activos fijos
+        </p>
+      </div>
+
       <h2 className="mb-4 text-center">Recuperar contraseña</h2>
       <form onSubmit={recover} className="card p-4">
         <input

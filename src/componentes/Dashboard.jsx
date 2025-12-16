@@ -3,6 +3,8 @@ import Activos from "./Activos";
 import Reportes from "./Reportes";
 import Usuarios from "./Usuarios";
 import Ordenes from "./Ordenes"; 
+import "./Dashboard.css";
+
 
 export default function Dashboard({ user, onLogout }) {
   const [seccion, setSeccion] = useState("activos"); // activos | reportes | usuarios | ordenes
@@ -64,12 +66,16 @@ export default function Dashboard({ user, onLogout }) {
       </div>
     </div>
   );
-
+    
   // Área principal (sin recargar)
   const MainArea = () => {
     switch (seccion) {
       case "activos":
-        return <Activos />;
+        return (
+        <>
+          <Activos />
+        </>
+      );
       case "reportes":
         return <Reportes />;
       case "usuarios":
@@ -82,14 +88,15 @@ export default function Dashboard({ user, onLogout }) {
   };
 
   return (
-    <div className="d-flex vh-100">
-      <Sidebar />
-      <div className="flex-fill p-4 overflow-auto">
-        <div className="alert alert-success mb-4">
-          <strong>Bienvenido, {user.nombre}</strong> — Rol: {user.rol}
-        </div>
-        <MainArea />
+  <div className="d-flex vh-100 dashboard-container">
+    <Sidebar />
+
+    <div className="flex-fill p-4 overflow-auto main-content">
+      <div className="alert alert-success mb-4 dashboard-welcome">
+        <strong>Bienvenido, {user.nombre}</strong> — Rol: {user.rol}
       </div>
+      <MainArea />
     </div>
-  );
+  </div>
+);
 }

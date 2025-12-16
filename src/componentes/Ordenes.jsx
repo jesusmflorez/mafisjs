@@ -1,5 +1,8 @@
 // src/components/Ordenes.jsx
 import { useEffect, useState } from "react";
+import OrdenesPorEstado from './charts/OrdenesPorEstado';
+import OrdenesVencidasVsTiempo from './charts/OrdenesVencidasVsTiempo';
+import OrdenesPorTecnico from './charts/OrdenesPorTecnico';
 
 export default function Ordenes() {
   const [datos, setDatos] = useState([]);
@@ -101,6 +104,11 @@ export default function Ordenes() {
   return (
     <div className="container mt-4">
       <h2>Órdenes de Trabajo</h2>
+      <div className="ChartsContainer">
+        <OrdenesPorEstado />
+        <OrdenesVencidasVsTiempo />
+        <OrdenesPorTecnico />
+      </div>
       <button className="btn btn-primary mb-3" onClick={nuevo}>
         Nueva orden
       </button>

@@ -1,0 +1,219 @@
+/* ===============================
+   DASHBOARD GENERAL
+================================ */
+.dashboard-container {
+  background-color: #f4f6f8;
+  min-height: 100vh;
+}
+
+/* ===============================
+   SIDEBAR
+================================ */
+.sidebar {
+  background-color: #ffffff;
+  border-right: 1px solid #dee2e6;
+  width: 220px;
+  min-height: 100vh;
+}
+
+.sidebar h5 {
+  font-weight: 700;
+  color: #198754;
+}
+
+.sidebar .btn {
+  text-align: left;
+  font-weight: 500;
+}
+
+.sidebar .btn-primary {
+  background-color: #198754;
+  border-color: #198754;
+}
+
+.sidebar .btn-outline-primary {
+  color: #198754;
+  border-color: #198754;
+}
+
+.sidebar .btn-outline-primary:hover {
+  background-color: #198754;
+  color: #fff;
+}
+
+/* Botón cerrar sesión */
+.sidebar .btn-outline-danger {
+  border-radius: 8px;
+}
+
+/* ===============================
+   CONTENIDO PRINCIPAL
+================================ */
+.main-content {
+  padding: 1.5rem;
+  background-color: #f4f6f8;
+}
+
+/* ===============================
+   ALERTA BIENVENIDA
+================================ */
+.alert-success {
+  background-color: #e6f4ea;
+  border-color: #b7e4c7;
+  color: #1b4332;
+  font-size: 0.95rem;
+  border-radius: 10px;
+}
+
+/* ===============================
+   TÍTULOS
+================================ */
+h1, h2, h3 {
+  font-weight: 700;
+  color: #212529;
+}
+
+/* ===============================
+   BOTONES GENERALES
+================================ */
+.btn-primary {
+  background-color: #198754;
+  border-color: #198754;
+}
+
+.btn-primary:hover {
+  background-color: #157347;
+  border-color: #146c43;
+}
+
+.btn-success {
+  background-color: #20c997;
+  border-color: #20c997;
+}
+
+.btn-success:hover {
+  background-color: #198754;
+}
+
+.btn-warning {
+  color: #000;
+}
+
+.btn-outline-warning {
+  border-radius: 6px;
+}
+
+.btn-outline-danger {
+  border-radius: 6px;
+}
+
+/* ===============================
+   TABLAS
+================================ */
+.table {
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table thead {
+  background-color: #f1f3f5;
+}
+
+.table thead th {
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+/* ===============================
+   ESTADOS (BADGES)
+================================ */
+.badge-activo {
+  background-color: #198754;
+}
+
+.badge-inactivo {
+  background-color: #dc3545;
+}
+
+.badge-proceso {
+  background-color: #ffc107;
+  color: #000;
+}
+
+/* ===============================
+   TARJETAS / CARDS
+================================ */
+.card {
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card h5 {
+  font-weight: 600;
+  color: #495057;
+}
+
+/* ===============================
+   GRÁFICOS
+================================ */
+.graficos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.grafico-card {
+  background-color: #ffffff;
+  padding: 1.2rem;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.grafico-card h6 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #198754;
+}
+
+/* ===============================
+   FORMULARIOS
+================================ */
+.form-control, .form-select {
+  border-radius: 8px;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+}
