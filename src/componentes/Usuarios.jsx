@@ -1,5 +1,8 @@
 // src/components/Usuarios.jsx
 import { useEffect, useState } from "react";
+import UsuariosPorRol from './charts/UsuariosPorRol';
+import UsuariosActivosInactivos from './charts/UsuariosActivosInactivos';
+import UsuariosActividad from './charts/UsuariosActividad';
 
 export default function Usuarios() {
   const [datos, setDatos] = useState([]);
@@ -92,6 +95,12 @@ export default function Usuarios() {
   return (
     <div className="container mt-4">
       <h2>Usuarios</h2>
+      <div className="ChartsContainer">
+        <UsuariosPorRol />
+        <UsuariosActivosInactivos />
+        <UsuariosActividad />
+      </div>
+
       <button className="btn btn-primary mb-3" onClick={nuevo}>
         Nuevo usuario
       </button>

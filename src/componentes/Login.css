@@ -1,0 +1,162 @@
+/* ===== CONTENEDOR GENERAL ===== */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* Degradado verde profesional */
+  background: linear-gradient(135deg, #1b8f52, #2ecc71);
+
+  padding: 20px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* ===== HEADER ===== */
+.login-header {
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+/* Título principal */
+.login-title {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Subtítulo */
+.login-subtitle {
+  font-size: 1rem;
+  max-width: 420px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+/* ===== LOGO ===== */
+.login-header img {
+  max-width: 90px;      /* Tamaño controlado */
+  height: auto;
+  margin-bottom: 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ===== TÍTULOS DE VISTA ===== */
+.login-container h2 {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ===== CARD ===== */
+.login-container .card {
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.6s ease;
+}
+
+/* ===== INPUTS ===== */
+.login-container .form-control,
+.login-container .form-select {
+  border-radius: 10px;
+  padding: 10px 14px;
+  border: 1px solid #dcdcdc;
+  transition: all 0.3s ease;
+}
+
+.login-container .form-control:focus,
+.login-container .form-select:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+}
+
+/* ===== BOTONES ===== */
+.login-container .btn {
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Botón principal */
+.login-container .btn-primary {
+  background-color: #198754;
+  border: none;
+}
+
+.login-container .btn-primary:hover {
+  background-color: #157347;
+  transform: translateY(-1px);
+}
+
+/* Botón crear cuenta */
+.login-container .btn-success {
+  background-color: #20c997;
+  border: none;
+}
+
+.login-container .btn-success:hover {
+  background-color: #198754;
+}
+
+/* Botón recuperar */
+.login-container .btn-warning {
+  background-color: #ffc107;
+  border: none;
+}
+
+.login-container .btn-warning:hover {
+  background-color: #ffb000;
+}
+
+/* ===== LINKS ===== */
+.login-container .btn-link {
+  color: #198754;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.login-container .btn-link:hover {
+  text-decoration: underline;
+  color: #145c32;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 576px) {
+  .login-title {
+    font-size: 2.2rem;
+  }
+
+  .login-subtitle {
+    font-size: 0.9rem;
+  }
+}

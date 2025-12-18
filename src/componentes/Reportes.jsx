@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import ReportesPorEstado from './charts/ReportesPorEstado';
+import ReportesPorMes from './charts/ReportesPorMes';
+import ReportesPorTipo from './charts/ReportesPorTipo';
 
 export default function Reportes() {
   const [datos, setDatos] = useState([]);
@@ -87,6 +90,12 @@ export default function Reportes() {
   return (
     <div className="container mt-4">
       <h2>Reportes de Falla</h2>
+      <div className="ChartsContainer">
+        <ReportesPorEstado />
+        <ReportesPorMes />
+        <ReportesPorTipo />
+      </div>
+
       <button className="btn btn-primary mb-3" onClick={nuevo}>
         Nuevo reporte
       </button>

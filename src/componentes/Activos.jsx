@@ -1,4 +1,10 @@
 import { useEffect, useState } from "react";
+import ActivosPorEstado from './charts/ActivosPorEstado';
+import ActivosPorUbicacion from './charts/ActivosPorUbicacion';
+import './charts/ActivosCharts.css';
+
+
+
 
 export default function Activos() {
   const [datos, setDatos] = useState([]);
@@ -61,6 +67,10 @@ export default function Activos() {
   return (
     <div className="container mt-4">
       <h2>Gestión de Activos</h2>
+      <div className="ChartsContainer">
+        <ActivosPorEstado />
+        <ActivosPorUbicacion />
+      </div>
       <button className="btn btn-primary mb-3" onClick={nuevo}>
         Nuevo activo
       </button>
